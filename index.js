@@ -15,13 +15,17 @@ let winXCounter = 0;
 let win0Counter = 0;
 let drawCounter = 0;
 
-cells.forEach((cell) => {
-  if (!endGame) {
-    cell.addEventListener("click", drawStep);
-  } else {
-    cell.removeEventListener("click", drawStep);
-  }
-});
+clickToCell();
+
+function clickToCell() {
+  cells.forEach((cell) => {
+    if (!endGame) {
+      cell.addEventListener("click", drawStep);
+    } else {
+      cell.removeEventListener("click", drawStep);
+    }
+  });
+}
 
 function drawStep() {
   if (!this.innerHTML && !endGame) {
@@ -95,6 +99,7 @@ function resetField() {
     cells.forEach((cell) => {
       cell.innerHTML = "";
     });
+    clickToCell();
   } else if (win) {
     cells.forEach((cell) => {
       cell.removeEventListener("click", drawStep);
